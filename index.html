@@ -1,0 +1,695 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Etched AI: Future of Transformers ?  </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="156795f6-7e12-80ff-a990-da9d3a797b33" class="page sans"><header><h1 class="page-title">Etched AI: Future of Transformers ?  </h1><p class="page-description"></p></header><div class="page-body"><blockquote id="157795f6-7e12-80bd-961f-d0dc7ab32c89" class=""><em>Written by:- </em><em><a href="https://omkarbhope.github.io/OmkarPortfolio/">Omkar Bhope</a></em></blockquote><figure id="157795f6-7e12-80fc-aa26-c6e4d8998483" class="image"><a href="Etched%20AI%20Future%20of%20Transformers%20156795f67e1280ffa990da9d3a797b33/image.png"><img style="width:707.9921875px" src="Etched%20AI%20Future%20of%20Transformers%20156795f67e1280ffa990da9d3a797b33/image.png"/></a></figure><p id="157795f6-7e12-8055-b155-ead99a0c2474" class="">
+</p><p id="156795f6-7e12-8079-8a21-c59e02bc0bcc" class="">On 25 June 2024, Etched AI announced their Sohu chip, the world’s first Application Specific Integrated Circuit built specifically for Transformers. The foundation of Etched AI is based on the bet made in the world of AI, that transformers are the upcoming future and are soon going to take over the world. But is this bet grounded in reality? In this piece, I will undertake a comprehensive analysis of existing systems and put the Sohu chip through rigorous scrutiny, evaluating its performance across key metrics to determine its potential to disrupt the market.</p><h1 id="156795f6-7e12-8005-8507-cb22152e7798" class="">Company’s Vision and Mission: </h1><p id="156795f6-7e12-807e-be44-fef9cce49ded" class="">Etched AI, led by CEO Gavin Uberti, is on a mission to revolutionize AI hardware by addressing one of the industry&#x27;s greatest challenges: creating purpose-built chips for large language models (LLMs) that surpass existing GPUs in performance, efficiency, and scalability. Under Uberti’s visionary leadership, Etched is redefining the future of AI hardware to enable transformative AI experiences at a scale never seen before.</p><p id="156795f6-7e12-80af-961d-d01ca8a32a7e" class="">Gavin Uberti, often likened to Sam Altman for his impact-driven approach, brings a unique blend of expertise and passion to the table. A Harvard dropout with a background in mathematics and computer science, Uberti honed his skills at OctoML and <a href="http://xnor.ai/">Xnor.ai</a>, contributing to cutting-edge advancements in deep learning compilers and efficient neural network implementations. Alongside him are cofounders Robert Wachen and Chris Zhu, both recipients of the prestigious Thiel Fellowship, further cementing the team’s reputation as a powerhouse of innovation.</p><p id="156795f6-7e12-8053-984d-f2085bef1117" class="">Supporting the founders is a team of industry stalwarts, including Mark Ross, former CTO at Cypress Semiconductor; Ajat Hukkoo, with decades of experience at Intel and Broadcom; and Saptadeep Pal, Chief Architect and cofounder of Auradine. This collective of seasoned professionals ensures that Etched’s ambitious vision is in the most capable hands.</p><p id="156795f6-7e12-8008-8486-ecf05c51bfae" class="">The Sohu chip, Etched’s flagship innovation, exemplifies the company’s mission to deliver hardware optimized specifically for transformer models. By unlocking unprecedented speed and efficiency, the Sohu chip aims to make once-impossible AI applications—like ultra-fast inference for real-time decision-making and AI-generated creative breakthroughs—a reality. Backed by a $120 million funding round, Etched is well-positioned to challenge industry giants like NVIDIA and lead the AI hardware revolution toward a future defined by superintelligence.</p><h1 id="156795f6-7e12-8082-a247-d05b008521a6" class="">What is ASIC?</h1><p id="156795f6-7e12-8082-ac16-ef60ebc2245e" class="">ASICs are specialized processors that are made for one purpose: running specific computational jobs at the highest efficiency possible. In contrast to general-purpose processors, such as CPUs or GPUs, ASICs are designed with a laser-sharp focus on the performance of narrow tasks with unparalleled speed, energy efficiency, and precision. Their tailored architecture makes them indispensable for handling the immense computational loads of modern AI models, especially transformative technologies like neural networks and transformers.</p><p id="156795f6-7e12-80e2-9e91-e63b41683d9e" class="">What makes ASICs truly revolutionary is their ability to deliver peak performance while consuming significantly less power. What it means for developers is faster training of models, efficient model deployments, and decreased operational costs—all the while pushing the boundaries of what AI can achieve, from natural language processing to real-time decisions in industries like healthcare or automotive.</p><p id="156795f6-7e12-80df-9527-f33db0e1722f" class="">With increasing demands for AI, the need for specialized solutions like ASICs is becoming more evident. ASICs are already changing industries, but the Sohu chip from Etched AI is taking it further. Purpose-built for transformer-based models, the Sohu chip optimizes speed and scalability, setting new standards in AI hardware. With this chip leading the charge for the AI hardware revolution, it is making applications that were once the realm of science fiction an everyday reality. </p><h1 id="156795f6-7e12-80b9-8c01-cb9d5d2bc35b" class="">Does the Industry need transformers? </h1><p id="156795f6-7e12-8073-b796-d0f81a4e9b11" class="">In the industry,  almost 82% of companies are either currently using AI or considering its implementation. However, each company has its own use case and their specific needs. There are many sophisticated algorithms built that are fast, reliable, and easily suffice the needs of customers making them the obvious choice of implementation for the companies. Here’s a list of companies using different AI models: </p><p id="156795f6-7e12-803e-b041-dbec75939c7a" class="">In today’s fast-evolving tech landscape, nearly 82% of companies are either using AI or exploring its implementation, the technology has become a cornerstone of innovation across industries. However, each business has unique needs and challenges, requiring tailored AI solutions to deliver real value. Sophisticated algorithms, celebrated for their speed, reliability, and scalability, have become the go-to choice for companies aiming to meet and exceed customer expectations. From streamlining operations to enhancing user experiences, businesses are leveraging diverse AI models to address specific use cases, driving competitive advantage and transformative progress. Here’s a list of companies and the AI models they are using: </p><p id="156795f6-7e12-809d-bcd9-c052df8d8e42" class="">
+</p><table id="156795f6-7e12-8024-8dd4-eaa6d31097e0" class="simple-table"><tbody><tr id="156795f6-7e12-8022-8425-e399b70a3b39"><td id="eoJI" class="" style="width:277px"><strong>Popular Models</strong></td><td id="j\&lt;u" class="" style="width:499px"><strong>Used by Companies</strong></td></tr><tr id="156795f6-7e12-80d7-acaf-d7f64a0286af"><td id="eoJI" class="" style="width:277px"><strong>Convolutional Neural Networks (CNNs)</strong>- <em>Examples:</em> AlexNet, VGG, ResNet</td><td id="j\&lt;u" class="" style="width:499px">- <strong>Google</strong>: Image search and classification- <strong>Facebook</strong>: Image recognition and tagging</td></tr><tr id="156795f6-7e12-8037-9dc3-d6dea1da4c5c"><td id="eoJI" class="" style="width:277px"><strong>Recurrent Neural Networks (RNNs)</strong>- <em>Examples:</em> Vanilla RNN, Bidirectional RNNs</td><td id="j\&lt;u" class="" style="width:499px">- <strong>Apple</strong>: Siri&#x27;s speech recognition- <strong>Google</strong>: Google Translate</td></tr><tr id="156795f6-7e12-80ca-b02b-faec80602388"><td id="eoJI" class="" style="width:277px"><strong>Long Short-Term Memory Networks (LSTMs)</strong></td><td id="j\&lt;u" class="" style="width:499px">- <strong>Amazon</strong>: Alexa&#x27;s voice processing- <strong>Netflix</strong>: Content recommendation systems</td></tr><tr id="156795f6-7e12-8056-abe8-fb8cca4c7e54"><td id="eoJI" class="" style="width:277px"><strong>Gated Recurrent Units (GRUs)</strong></td><td id="j\&lt;u" class="" style="width:499px">- <strong>Spotify</strong>: Music recommendation systems- <strong>Alibaba</strong>: E-commerce product recommendations</td></tr><tr id="156795f6-7e12-8053-b71d-f6abd6d60a29"><td id="eoJI" class="" style="width:277px"><strong>Variational Autoencoders (VAEs)</strong></td><td id="j\&lt;u" class="" style="width:499px">- <strong>Adobe</strong>: Image editing and synthesis tools- <strong>NVIDIA</strong>: Research in image generation</td></tr><tr id="156795f6-7e12-8049-b534-cc5d00720d03"><td id="eoJI" class="" style="width:277px"><strong>Generative Adversarial Networks (GANs)</strong>- <em>Examples:</em> StyleGAN, CycleGAN</td><td id="j\&lt;u" class="" style="width:499px">- <strong>NVIDIA</strong>: Graphics and image generation- <strong>DeepMind</strong>: Research in data augmentation</td></tr><tr id="156795f6-7e12-80e6-8037-d46c534319d4"><td id="eoJI" class="" style="width:277px"><strong>Support Vector Machines (SVMs)</strong></td><td id="j\&lt;u" class="" style="width:499px">- <strong>AT&amp;T</strong>: Fraud detection- <strong>Bioinformatics Companies</strong>: Gene expression classification</td></tr><tr id="156795f6-7e12-809d-95c2-ca55090fe776"><td id="eoJI" class="" style="width:277px"><strong>Decision Trees and Random Forests</strong></td><td id="j\&lt;u" class="" style="width:499px">- <strong>Banking Sector</strong>: Credit scoring and risk assessment- <strong>Healthcare</strong>: Disease prediction models</td></tr><tr id="156795f6-7e12-80d4-a40c-e5d55dd9a3c9"><td id="eoJI" class="" style="width:277px"><strong>K-Means Clustering</strong></td><td id="j\&lt;u" class="" style="width:499px">- <strong>Marketing Firms</strong>: Customer segmentation- <strong>Telecommunications</strong>: Network optimization</td></tr><tr id="156795f6-7e12-8089-962f-dc8ae769f6bf"><td id="eoJI" class="" style="width:277px"><strong>Principal Component Analysis (PCA)</strong></td><td id="j\&lt;u" class="" style="width:499px">- <strong>Finance</strong>: Portfolio management- <strong>Genetics Research</strong>: Data dimensionality reduction</td></tr><tr id="156795f6-7e12-8022-b01d-ce43cf4a4dbf"><td id="eoJI" class="" style="width:277px"><strong>Hidden Markov Models (HMMs)</strong></td><td id="j\&lt;u" class="" style="width:499px">- <strong>Speech Recognition Systems</strong>: Various companies- <strong>Bioinformatics</strong>: Sequence analysis</td></tr><tr id="156795f6-7e12-809f-a3dd-f5c49af2f8d8"><td id="eoJI" class="" style="width:277px"><strong>Markov Random Fields (MRFs)</strong></td><td id="j\&lt;u" class="" style="width:499px">- <strong>Image Processing Firms</strong>: Image restoration- <strong>Natural Language Processing</strong>: Contextual data modeling</td></tr><tr id="156795f6-7e12-8046-be32-dcd0dd36fa47"><td id="eoJI" class="" style="width:277px"><strong>Monte Carlo Simulations</strong></td><td id="j\&lt;u" class="" style="width:499px">- <strong>Financial Institutions</strong>: Risk assessment- <strong>Energy Sector</strong>: Resource allocation planning</td></tr><tr id="156795f6-7e12-8083-a655-d371e414a7e0"><td id="eoJI" class="" style="width:277px"><strong>Genetic Algorithms (GAs)</strong></td><td id="j\&lt;u" class="" style="width:499px">- <strong>Automotive Industry</strong>: Design optimization- <strong>Telecommunications</strong>: Network design</td></tr><tr id="156795f6-7e12-8052-a06d-f0b097ebdc8e"><td id="eoJI" class="" style="width:277px"><strong>Particle Swarm Optimization (PSO)</strong></td><td id="j\&lt;u" class="" style="width:499px">- <strong>Robotics</strong>: Path planning- <strong>Engineering Firms</strong>: Structural design optimization</td></tr><tr id="156795f6-7e12-8020-b955-c3c8d09703b2"><td id="eoJI" class="" style="width:277px"><strong>Reservoir Computing</strong></td><td id="j\&lt;u" class="" style="width:499px">- <strong>Time-Series Prediction</strong>: Various research applications- <strong>Signal Processing</strong>: Real-time data analysis</td></tr></tbody></table><p id="156795f6-7e12-8090-8e6b-ca5662f810d5" class="">If we take a closer look at the above list, all these models are non-transformer-based and highly accepted in the industry. So, why Transformers? Even though there are many sectors where the usage of large transformer models might be unnecessary, the continuous evolution in the field of Transformers such as the exploration of attention mechanisms for faster inference, adaption of techniques like LoRA, Quantization, pruning, speculative decoding, etc to provide better and faster models are making Transformers an obvious choice for many if not all use cases. </p><p id="156795f6-7e12-801a-8314-f97ff8a14c06" class="">Here’s a list of all the companies that are slowly switching from Traditional AI models to Transformers: </p><table id="156795f6-7e12-809b-8c29-e9c785e88383" class="simple-table"><tbody><tr id="156795f6-7e12-8032-9bcc-d547c6603575"><td id="eq^&lt;" class="" style="width:114.0625px"><strong>Company</strong></td><td id="NvPE" class="" style="width:218px"><strong>Traditional Models Used</strong></td><td id="I&gt;_}" class="" style="width:447px"><strong>Transformer-Based Models Adopted</strong></td></tr><tr id="156795f6-7e12-80a7-8769-c7d04ce5ce65"><td id="eq^&lt;" class="" style="width:114.0625px"><strong>Google</strong></td><td id="NvPE" class="" style="width:218px">- Recurrent Neural Networks (RNNs)- CNNs for Vision Tasks</td><td id="I&gt;_}" class="" style="width:447px">- <strong>BERT</strong> (Search ranking and NLP tasks)- <strong>PaLM</strong> (Large-scale NLP)- <strong>ViT</strong> (Vision Transformer for image classification)</td></tr><tr id="156795f6-7e12-80bc-b1fb-f66a26847316"><td id="eq^&lt;" class="" style="width:114.0625px"><strong>OpenAI</strong></td><td id="NvPE" class="" style="width:218px">- LSTMs for early language models</td><td id="I&gt;_}" class="" style="width:447px">- <strong>GPT Series</strong> (e.g., GPT-3, GPT-4 for conversational AI and general NLP)- <strong>DALL-E</strong> (Image generation from text)- <strong>CLIP</strong> (Multi-modal tasks combining vision and text)</td></tr><tr id="156795f6-7e12-80e1-ac32-e714f2826419"><td id="eq^&lt;" class="" style="width:114.0625px"><strong>Microsoft</strong></td><td id="NvPE" class="" style="width:218px">- RNNs for NLP</td><td id="I&gt;_}" class="" style="width:447px">- <strong>Turing-NLG</strong> (NLP tasks)- <strong>OpenAI GPT integration</strong> (e.g., Copilot in Microsoft 365)- <strong>BERT variants</strong> (Search in Bing)</td></tr><tr id="156795f6-7e12-8041-b8f6-fd9a521291d4"><td id="eq^&lt;" class="" style="width:114.0625px"><strong>Meta (Facebook)</strong></td><td id="NvPE" class="" style="width:218px">- CNNs for image recognition</td><td id="I&gt;_}" class="" style="width:447px">- <strong>LLaMA (Large Language Model Meta AI)</strong> for generative NLP- <strong>DETR</strong> (DEtection TRansformer for object detection)</td></tr><tr id="156795f6-7e12-80e1-8c85-d5bd7e4df063"><td id="eq^&lt;" class="" style="width:114.0625px"><strong>Amazon</strong></td><td id="NvPE" class="" style="width:218px">- Collaborative filtering for recommendations- RNNs for Alexa</td><td id="I&gt;_}" class="" style="width:447px">- <strong>AlexaTM (Transformer Model)</strong> for language understanding in Alexa- <strong>Vision Transformer (ViT)</strong> for product recommendations</td></tr><tr id="156795f6-7e12-80e5-bdaf-f0ed61e07f25"><td id="eq^&lt;" class="" style="width:114.0625px"><strong>IBM</strong></td><td id="NvPE" class="" style="width:218px">- Rule-based systems for NLP</td><td id="I&gt;_}" class="" style="width:447px">- <strong>Watson NLP models</strong> based on BERT architecture- <strong>Project Debater AI</strong> using transformers for argument generation</td></tr><tr id="156795f6-7e12-8065-b557-cdb7e2875227"><td id="eq^&lt;" class="" style="width:114.0625px"><strong>Salesforce</strong></td><td id="NvPE" class="" style="width:218px">- Traditional ML for analytics</td><td id="I&gt;_}" class="" style="width:447px">- <strong>Einstein GPT</strong> (Generative AI for CRM)- <strong>CTRL</strong> (Conditional Transformer for Language tasks)</td></tr><tr id="156795f6-7e12-8094-8419-ec56c9352bb0"><td id="eq^&lt;" class="" style="width:114.0625px"><strong>Adobe</strong></td><td id="NvPE" class="" style="width:218px">- GANs for image generation</td><td id="I&gt;_}" class="" style="width:447px">- <strong>Firefly</strong> (Generative AI using transformers for creative applications)- <strong>ViT</strong> for enhancing visual creativity tools</td></tr><tr id="156795f6-7e12-8049-8b68-f4d50c288ccb"><td id="eq^&lt;" class="" style="width:114.0625px"><strong>NVIDIA</strong></td><td id="NvPE" class="" style="width:218px">- CNNs for image processing</td><td id="I&gt;_}" class="" style="width:447px">- <strong>Megatron</strong> (Large transformer model for research)- <strong>StyleGAN</strong> augmented with transformer components for synthesis tasks</td></tr><tr id="156795f6-7e12-80df-99b2-fa94c2900ca4"><td id="eq^&lt;" class="" style="width:114.0625px"><strong>Apple</strong></td><td id="NvPE" class="" style="width:218px">- RNNs for Siri&#x27;s speech recognition</td><td id="I&gt;_}" class="" style="width:447px">- Exploring <strong>TransformerXL</strong> and <strong>BERT variants</strong> for Siri’s enhanced understanding- <strong>ViT</strong> for internal computer vision research</td></tr></tbody></table><p id="157795f6-7e12-8042-ad2b-fa69dbf78ae3" class="">In recent years, there has been an unprecedented Demand for transformer based models in the market. Before ChatGPT, the market for transformer inference was ~$50M, and now it’s billions. All big tech companies use transformer models (OpenAI, Google, Amazon, Microsoft, Facebook, etc.).</p><p id="157795f6-7e12-8030-86d1-c94dbd2b1e41" class="">Also, AI model designs have become much more stable. In the past, top AI models often saw big, disruptive design changes. But since GPT-2 came out, the leading models have stuck to a design called the &quot;transformer paradigm.&quot; This approach is now used in major models like OpenAI&#x27;s GPT family, Google&#x27;s PaLM, Facebook&#x27;s LLaMa, and even Tesla&#x27;s self-driving systems.</p><p id="157795f6-7e12-8014-a2ee-e358d8b91d03" class="">Transformers are powerful, useful, and profitable enough to dominate every major AI compute market before alternatives are ready. Transformers power every large AI product: from agents to search to chat. Although these models are used for very different tasks—like writing text, generating images, or helping cars drive—they share a lot of the same underlying structure. Small tweaks, like using SwiGLU activations or RoPE encodings, are what make them unique for specific jobs.</p><p id="157795f6-7e12-80ed-8348-f8c21ac661ba" class="">What&#x27;s surprising is how consistent this core design has stayed over the years. Even with a five-year gap between GPT-2 and LLaMa-3, the basic architecture hasn’t really changed. Instead, improvements have come from scaling up: using bigger datasets, more computing power, and more complex models to achieve better results. </p><h1 id="156795f6-7e12-80d5-8955-c503d09abf01" class="">Need for more computation: </h1><p id="156795f6-7e12-801b-99b3-c4dc0a0755d4" class="">The global transformers market size is calculated at <strong>USD 63.13 billion in 2024 </strong>and is predicted to grow only further. According to “Sam Altman” the two primary challenges in the advancement of transformer-based AI models: are computational capacity and data availability. Training large language models, such as OpenAI&#x27;s GPT-4, demands substantial computational resources. Altman has noted that a shortage of computing power has delayed the release of some of OpenAI&#x27;s products. While we can’t resolve the data availability issue, Sohu’s extensive computational capabilities can play a pivotal role in the inference of future GPT models.  </p><p id="156795f6-7e12-80c7-8c76-e25cb11c8e0a" class="">
+</p><p id="156795f6-7e12-8047-8cae-ff45a8411c7a" class="">Meta used <em>50,000x</em> more computing to train Llama (400B parameters 2024 SoTA) than OpenAI used on GPT-2 (1.5B parameters 2019 SoTA). Looking at the resource utilization for training, we can easily estimate that the computational resources required for inference will be equally higher. </p><p id="156795f6-7e12-80f5-9b56-caf625ae7a1b" class="">  </p><figure id="156795f6-7e12-80c8-b776-f55b5ba07468" class="image"><a href="Etched%20AI%20Future%20of%20Transformers%20156795f67e1280ffa990da9d3a797b33/image%201.png"><img style="width:707.9921875px" src="Etched%20AI%20Future%20of%20Transformers%20156795f67e1280ffa990da9d3a797b33/image%201.png"/></a></figure><p id="156795f6-7e12-80b0-bc07-fef2538586b4" class="">
+</p><p id="156795f6-7e12-8018-8911-e219b9f02d09" class="">AI companies like Google, OpenAI, Microsoft, Anthropic, Amazon, etc. are spending more than <em>$100</em> <em>billion</em> over the next few years to keep scaling. Amazon Web Services (AWS) is investing over $500 million in three nuclear energy projects located in Washington state, Virginia, and Pennsylvania. These investments aim to meet the escalating power demands of AWS&#x27;s AI programs, including those utilizing Trainium chips. Similarly, other tech giants like Google and Microsoft are also exploring nuclear energy to power their data centers. </p><p id="156795f6-7e12-803e-b086-da03181afffe" class="">
+</p><p id="156795f6-7e12-80c2-8271-da6af7af1ea6" class="">While these energy sources will provide carbon-free electricity for the data centers, they are still hazardous to nature increasing the amount of radioactive waste and additional cost for handling that waste. Sohu chip can be proven as a transformative alternative for LLM inference given its exceptional capabilities. Sohu delivers a near-impossible throughput of 500,000 token/s for the LLaMA 70B model, which surpasses every available computational system in the market. From this, we can infer that Sohu will perform equally exceptionally with other transformer models making it an obvious choice for future LLM inferencing because of its cost-effectiveness and energy-efficient nature.   </p><p id="156795f6-7e12-80b0-8a3b-f873a6f32c28" class="">
+</p><p id="156795f6-7e12-80f6-834d-c5ce23e043db" class="">World leaders like <strong>Dario Amodei, and Sam Altman </strong>quote<strong> “</strong>I think we can scale to the $100B range, we’re going to get there in a few years&quot;, &quot;Scale is really good. When we have built a Dyson Sphere around the sun, we can entertain the discussion that we should stop scaling, but not before then&quot;. These quotes give a glimpse of the future with LLMs far bigger and better than the current state-of-the-art LLMs. However, Scaling the next 1,000x will be <em>very</em> expensive. The next-generation data centers will cost more than the GDP of a small nation. At the current pace, our hardware, power grids, and pocketbooks can’t keep up. Currently, the world&#x27;s largest LLM is GPT-4 consisting of 1.75 Trillion parameters. The Sohu’s stage A chip is Expansible to 100 Trillion parameter models making it ready for future LLMs. </p><h1 id="156795f6-7e12-80de-ad8e-ec88e774e32c" class="">What are the existing market leaders ? </h1><p id="157795f6-7e12-8034-b79e-c96366c8e005" class="">Many companies are building powerful GPUs and TPUs to handle the huge workloads. To name a few: </p><ul id="157795f6-7e12-8056-9e3f-e97121dce95c" class="bulleted-list"><li style="list-style-type:disc"><strong>NVIDIA&#x27;s GPUs:</strong><ul id="157795f6-7e12-80c9-9127-df08def1ca0e" class="bulleted-list"><li style="list-style-type:circle"><strong>H100 Tensor Core GPU:</strong> Built on the Hopper architecture, the H100 utilizes TSMC&#x27;s N4 process, comprising 80 billion transistors and up to 144 streaming multiprocessors. It supports HBM3 memory with bandwidth up to 3 TB/s, enhancing performance for AI and high-performance computing (HPC) workloads.</li></ul><ul id="157795f6-7e12-80c0-9306-c8a9ebdd8db7" class="bulleted-list"><li style="list-style-type:circle"><strong>B200 GPU:</strong> As part of the Blackwell architecture, the B200 is designed to succeed the H100, offering up to twice the performance in certain AI benchmarks. However, reports indicate potential overheating issues, leading to design adjustments and possible delivery delays.</li></ul></li></ul><ul id="157795f6-7e12-80ab-bdfc-eb08d581456c" class="bulleted-list"><li style="list-style-type:disc"><strong>Google&#x27;s TPUs:</strong><ul id="157795f6-7e12-808c-9999-da9d81ac8bb3" class="bulleted-list"><li style="list-style-type:circle"><strong>TPU v5p:</strong> Google&#x27;s TPU v5p has demonstrated significant improvements in AI training tasks, surpassing NVIDIA&#x27;s H100 in specific benchmarks.</li></ul><ul id="157795f6-7e12-8046-8e3a-dc58a7934e23" class="bulleted-list"><li style="list-style-type:circle"><strong>Trillium Chip:</strong> Introduced in May 2024, the Trillium chip enhances AI data center performance nearly fivefold compared to its predecessor, achieving 4.7 times better computing performance and 67% greater energy efficiency.</li></ul></li></ul><ul id="157795f6-7e12-80c3-ab43-e9bbe5df919c" class="bulleted-list"><li style="list-style-type:disc"><strong>Amazon&#x27;s Trainium:</strong><ul id="157795f6-7e12-80c5-8f4a-cc34cb6d70fa" class="bulleted-list"><li style="list-style-type:circle"><strong>Trainium2:</strong> AWS&#x27;s second-generation AI chip, Trainium2, is designed to compete with NVIDIA&#x27;s offerings, with plans to integrate it into supercomputers like the &quot;Ultracluster.&quot; Companies such as Anthropic intend to utilize Trainium2 for training AI models.</li></ul></li></ul><ul id="157795f6-7e12-801c-98e5-db1dc533869e" class="bulleted-list"><li style="list-style-type:disc"><strong>AMD&#x27;s Accelerators:</strong><ul id="157795f6-7e12-80be-91aa-ce3d7736bdb7" class="bulleted-list"><li style="list-style-type:circle"><strong>MI300X:</strong> AMD&#x27;s MI300X, based on the CDNA 3 architecture, features a substantial cache hierarchy and supports HBM3 memory. Low-level benchmarks indicate strong performance, with significant improvements over its predecessor.</li></ul></li></ul><h1 id="156795f6-7e12-809c-b093-eddc22a90ed6" class="">Why GPU’s are not the future of AI?</h1><p id="156795f6-7e12-8036-a243-cf0480716469" class="">Historically, GPUs have enjoyed rapid advancements in compute density, often doubling performance every two years in line with Moore&#x27;s Law. However, recent data reveals that this exponential growth has tapered:</p><ul id="156795f6-7e12-8053-b0ff-e72dd03a794d" class="bulleted-list"><li style="list-style-type:disc"><strong>2018-2021:</strong> GPUs saw compute density improvements averaging 20-30% annually, driven by architectural innovations and advanced manufacturing processes (7nm to 5nm nodes).</li></ul><ul id="156795f6-7e12-804b-8760-d64a7d48f5c9" class="bulleted-list"><li style="list-style-type:disc"><strong>2022-2024:</strong> The annual improvements have decelerated to around 5-15%, indicating that manufacturers are encountering physical and economic barriers in further scaling compute density.</li></ul><p id="156795f6-7e12-80a1-9894-cb6a3467c7a1" class="">Progress in GPU performance has stagnated, particularly when measured by compute density—TFLOPS per square millimeter of chip area. GPUs haven&#x27;t fundamentally improved in efficiency; instead, they’ve increased in physical size to deliver more computing power. This has led to a plateau in compute density, a critical metric for evaluating true performance progress.</p><ul id="156795f6-7e12-80bb-9e7a-ed4b37eb12f2" class="bulleted-list"><li style="list-style-type:disc"><strong>NVIDIA H100 vs. TPUv5:</strong> Launched in 2023, NVIDIA&#x27;s flagship H100 GPU offers approximately 60 TFLOPS of compute power. In comparison, Google&#x27;s TPUv5, introduced around the same time, delivers roughly 65 TFLOPS. Notably, their compute densities—TFLOPS per square millimeter—are nearly identical ~25 TFLOPS/mm², indicating that both architectures have reached similar efficiency levels despite their differing designs.</li></ul><ul id="156795f6-7e12-809f-b97e-c6a9f28ed4b3" class="bulleted-list"><li style="list-style-type:disc"><strong>AMD MI300X, NVIDIA H200, Intel Gaudi 3:</strong> These next-generation GPUs, released between 2023 and 2024, cluster closely in terms of compute density, each achieving around 25 TFLOPS/mm². This clustering signifies that significant leaps in compute density are rare, with each new generation only offering marginal improvements (approximately 5-10%) over its predecessor.</li></ul><ul id="156795f6-7e12-8016-af0f-dd818d9de47c" class="bulleted-list"><li style="list-style-type:disc"><strong>Projected NVIDIA B200 (2025):</strong> Forecasts suggest that the upcoming NVIDIA B200 will only achieve a compute density of about 27 TFLOPS/mm², representing a mere 8% improvement over the H200. This projection underscores the industry&#x27;s slow trajectory in enhancing compute density.</li></ul><p id="156795f6-7e12-80e4-b926-d67f1f6844a9" class="">
+</p><table id="156795f6-7e12-802f-9a4e-fb5733c0ae4c" class="simple-table"><tbody><tr id="156795f6-7e12-80b5-abc0-cdedcd21576c"><td id="ogV^" class=""><strong>Feature</strong></td><td id="Ndbx" class=""><strong>NVIDIA H100</strong></td><td id="_wRf" class=""><strong>Google TPU v5p</strong></td><td id="]dT@" class=""><strong>AMD MI300X</strong></td><td id="&lt;Iow" class=""><strong>NVIDIA H200</strong></td><td id="UIFt" class=""><strong>Intel Gaudi 3</strong></td></tr><tr id="156795f6-7e12-802b-9823-f3c1bd9075bd"><td id="ogV^" class=""><strong>Architecture</strong></td><td id="Ndbx" class="">Hopper</td><td id="_wRf" class="">Proprietary Tensor Processor</td><td id="]dT@" class="">CDNA 3</td><td id="&lt;Iow" class="">Enhanced Hopper</td><td id="UIFt" class="">Proprietary AI Accelerator</td></tr><tr id="156795f6-7e12-80f8-bc46-f308b50d824f"><td id="ogV^" class=""><strong>Memory</strong></td><td id="Ndbx" class="">80 GB HBM3</td><td id="_wRf" class="">Proprietary</td><td id="]dT@" class="">192 GB HBM3</td><td id="&lt;Iow" class="">141 GB HBM3e</td><td id="UIFt" class="">128 GB HBM2e</td></tr><tr id="156795f6-7e12-8045-a815-f8ae13a7dc01"><td id="ogV^" class=""><strong>FP8 Performance</strong></td><td id="Ndbx" class="">1,979 TFLOPS (3,958 w/ sparsity)</td><td id="_wRf" class="">Estimated ~2,000+ TFLOPS</td><td id="]dT@" class="">2,573 TFLOPS</td><td id="&lt;Iow" class="">2,200 TFLOPS (4,400 w/ sparsity)</td><td id="UIFt" class="">1,835 TFLOPS</td></tr><tr id="156795f6-7e12-80b4-b02c-f8fe4d712a42"><td id="ogV^" class=""><strong>BF16 Performance</strong></td><td id="Ndbx" class="">989.4 TFLOPS</td><td id="_wRf" class="">Estimated ~2,000+ TFLOPS</td><td id="]dT@" class="">1,835 TFLOPS</td><td id="&lt;Iow" class="">1,100 TFLOPS (2,200 w/ sparsity)</td><td id="UIFt" class="">1,835 TFLOPS</td></tr><tr id="156795f6-7e12-802e-ae42-cbae69c660b3"><td id="ogV^" class=""><strong>INT8 Performance</strong></td><td id="Ndbx" class="">3,958 TOPS</td><td id="_wRf" class="">Estimated ~4,000+ TOPS</td><td id="]dT@" class="">3,670 TOPS</td><td id="&lt;Iow" class="">4,400 TOPS</td><td id="UIFt" class="">3,670 TOPS</td></tr><tr id="156795f6-7e12-8046-ab31-cb1e85d25e7a"><td id="ogV^" class=""><strong>Memory Bandwidth</strong></td><td id="Ndbx" class="">3 TB/s</td><td id="_wRf" class="">Estimated ~2.5 TB/s</td><td id="]dT@" class="">5.2 TB/s</td><td id="&lt;Iow" class="">4.5 TB/s</td><td id="UIFt" class="">2.5 TB/s</td></tr></tbody></table><p id="156795f6-7e12-8046-8c81-d8606b91d144" class="">
+</p><figure id="156795f6-7e12-8090-98a2-f3fab359f161" class="image"><a href="Etched%20AI%20Future%20of%20Transformers%20156795f67e1280ffa990da9d3a797b33/image%202.png"><img style="width:707.9921875px" src="Etched%20AI%20Future%20of%20Transformers%20156795f67e1280ffa990da9d3a797b33/image%202.png"/></a></figure><p id="156795f6-7e12-805d-b5bd-e01ac6f4dae1" class="">
+</p><p id="156795f6-7e12-80c7-8dfe-f2e473c5c439" class="">Larger GPU chips have become increasingly expensive to produce, with die sizes growing from 500 mm² to 600 mm², driving costs up by approximately 20% due to higher defect rates and reduced yields. This rising cost is unsustainable as demand for cost-effective AI inferencing grows. At the same time, stagnant compute density has led to larger chips consuming more power per compute task, with NVIDIA reporting a 10% increase in power consumption per TFLOPS over the past two years, further escalating operational costs and environmental impact. While advancements like 3D stacking and advanced packaging have offered incremental improvements, they have not resolved the underlying stagnation in compute density, highlighting the physical and economic limitations of current GPU architectures.</p><p id="156795f6-7e12-80f9-9f1d-c2fd08918b73" class="">This stagnation in GPU compute density underlines a critical juncture in the evolution of AI inferencing hardware. As GPUs reach their physical and economic limits, the industry must pivot towards specialized solutions like ASICs, TPUs, and other custom accelerators that offer superior efficiency and scalability. Embracing these specialized technologies will be essential to meet the burgeoning demands of next-generation AI applications, ensuring sustainable growth and innovation in the field. </p><h1 id="156795f6-7e12-802b-8781-cecbeb1ff4e6" class="">What are the existing specialized chips in the market ?</h1><p id="157795f6-7e12-80f9-8a68-fa14a5c9a7df" class=""><strong>Graphcore&#x27;s IPUs:</strong><div class="indented"><ul id="157795f6-7e12-805e-8231-f83ba6296407" class="bulleted-list"><li style="list-style-type:disc"><strong>Intelligence Processing Units (IPUs):</strong> Graphcore&#x27;s IPUs are designed for parallel processing of AI workloads, offering high performance across diverse models.</li></ul></div></p><p id="157795f6-7e12-8042-82be-e00a683032a1" class=""><strong>SambaNova&#x27;s SN Series:</strong><div class="indented"><ul id="157795f6-7e12-807b-bc8b-ef68cd2a5d4d" class="bulleted-list"><li style="list-style-type:disc"><strong>SN Series:</strong> SambaNova provides integrated hardware and software systems optimized for AI workloads, delivering high performance for various applications.</li></ul></div></p><p id="157795f6-7e12-802b-9581-cdc543e704ef" class=""><strong>Cerebras&#x27;s CS-2:</strong><div class="indented"><ul id="157795f6-7e12-8021-9e87-dbd3a0c5dfc1" class="bulleted-list"><li style="list-style-type:disc"><strong>Wafer-Scale Engine (WSE):</strong> The CS-2 is powered by the Wafer-Scale Engine (WSE), a groundbreaking AI accelerator with 850,000 cores on a single wafer, designed for extreme scalability and efficiency in training large-scale AI models. Its unique architecture delivers unparalleled performance for high-complexity workloads in research and enterprise AI.</li></ul></div></p><p id="157795f6-7e12-808d-b5b2-e2a89965aa78" class=""><strong>Groq&#x27;s GroqNode:</strong><div class="indented"><ul id="157795f6-7e12-8072-af3a-d622d4a78881" class="bulleted-list"><li style="list-style-type:disc">GroqNode is a deterministic AI accelerator designed to optimize inference workloads with high performance and low latency. Its architecture is ideal for real-time applications requiring consistent processing speeds.</li></ul></div></p><p id="157795f6-7e12-807f-85ee-fb30d8ec3f98" class=""><strong>Tenstorrent&#x27;s Grayskull:</strong><div class="indented"><ul id="157795f6-7e12-80e1-82d8-f4bb7faa3c94" class="bulleted-list"><li style="list-style-type:disc">Grayskull is a scalable AI processor that emphasizes flexibility and performance across diverse AI workloads. It is well-suited for training and inference tasks in distributed computing environments.</li></ul></div></p><p id="157795f6-7e12-8036-8dac-df574fc0a958" class=""><strong>D-Matrix&#x27;s Corsair:</strong><div class="indented"><ul id="157795f6-7e12-80f8-a8a3-ffebc1482bf1" class="bulleted-list"><li style="list-style-type:disc">Corsair is a specialized chip optimized for AI inference, designed to handle large-scale user requests efficiently. It focuses on energy efficiency and scalability, making it ideal for cloud and edge AI applications.</li></ul></div></p><p id="157795f6-7e12-80a1-8c6b-c25020392f71" class=""><strong>Cambricon&#x27;s Siyuan:</strong><div class="indented"><ul id="157795f6-7e12-804b-8d20-f816c5ca2b1f" class="bulleted-list"><li style="list-style-type:disc"><strong>Siyuan:</strong> Cambricon develops AI chips tailored for various applications, offering flexibility across different models. However, their general-purpose nature might not achieve the same level of efficiency as specialized chips in transformer-specific tasks.</li></ul></div></p><p id="157795f6-7e12-8082-9256-fc09df54cc22" class=""><strong>Intel&#x27;s Gaudi:</strong><div class="indented"><ul id="157795f6-7e12-8039-8493-c091f60e6795" class="bulleted-list"><li style="list-style-type:disc"><strong>Gaudi 3:</strong> Launched in October 2024, Intel&#x27;s Gaudi 3 accelerator targets AI workloads, offering competitive performance at a lower price point compared to NVIDIA&#x27;s H100, aiming to provide a cost-effective alternative for AI training and inference.</li></ul></div></p><h1 id="157795f6-7e12-80e4-a97c-d098b9b390fe" class="">Why is Sohu better ? </h1><p id="157795f6-7e12-80bc-b1fa-d6b7f62e305a" class="">While existing AI chips excel in efficiency and AI acceleration, most are designed to cater to a broad range of AI architectures, lacking a dedicated focus on any specific use case. In contrast, Sohu sets itself apart by embedding the Transformer architecture directly into its ASIC design. This level of specialization makes it exceptionally fast and efficient for transformer-based models, such as large language models and generative AI applications.</p><p id="157795f6-7e12-8015-83cb-e441201519a2" class="">Developing a custom chip is a monumental challenge, typically costing $50–100 million and taking years to transition from concept to production. The Etched AI team has demonstrated remarkable dedication and technical prowess in realizing Sohu, overcoming these barriers with precision and innovation.</p><p id="157795f6-7e12-801d-ad9b-d66f7b04c63b" class="">Sohu&#x27;s potential is further validated by the backing of industry luminaries such as Peter Thiel, Kevin Hartz, Mike Novogratz, David Siegel, Balaji Srinivasan, and Kyle Vogt. These individuals are not only influential founders and CTOs of AI-driven companies but also represent a significant pool of potential clients for the Sohu chip. Their support underscores the transformative promise of Sohu in reshaping AI hardware for the future.</p><p id="157795f6-7e12-80de-bae4-cee9d3e73a75" class="">Sohu supports only transformer inference for all of today&#x27;s models (Google, Meta, Microsoft, OpenAI, Anthropic, etc.) and can adapt to tweaks in future models. Since Sohu runs just one algorithm, it eliminates the need for the programmability that GPUs require to support a broad range of architectures. This specialization allows Sohu to dedicate far more transistors to matrix math operations. This design enables Sohu to achieve over 90% FLOPS utilization (compared to ~30% on a <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>P</mi><msup><mi>U</mi><mn>7</mn></msup></mrow><annotation encoding="application/x-tex">GPU^7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">GP</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span> with TRT-LLM).</p><p id="157795f6-7e12-80c9-ab4e-c6f7cae82ed2" class="">For example, NVIDIA’s H100 GPU has 80 billion transistors, but only 2.7 billion transistors i.e <strong>3.3%</strong> of them are allocated to matrix multiplication. This is because the majority of the chip&#x27;s area is used for programmability to support diverse AI workloads like CNNs, LSTMs, and other models. In contrast, Sohu’s design focuses solely on transformers, allowing it to allocate a much larger percentage of its transistors to compute operations like FP16/BF16/FP8 multiply-add circuits, which are critical for transformer performance.</p><h1 id="157795f6-7e12-807e-ab1c-c6d4663562d9" class="">Software development challenges:   </h1><p id="157795f6-7e12-803c-b41c-f3eef3261730" class="">Developing software for AI hardware like GPUs (Graphics Processing Units) and TPUs (Tensor Processing Units) is no small feat. The challenge lies in managing diverse programming tools like CUDA and PyTorch while ensuring compatibility and efficiency. The main difficulty comes from the need for highly advanced compilers, which translate AI models into instructions that these processors can execute efficiently.</p><p id="157795f6-7e12-8092-a7c4-e2ddf0db48b2" class="">Take NVIDIA&#x27;s CUDA platform as an example. Introduced in 2007, CUDA has become a cornerstone for accelerating GPU-powered applications, including AI tasks. However, this advantage comes with added intricacies. Developers must meticulously align CUDA versions, NVIDIA drivers, and AI frameworks like PyTorch to avoid compatibility issues. For instance, leveraging tools like <code>torch.compile()</code> in PyTorch 2.0 requires specific versions of CUDA and drivers, adding to the development overhead.</p><p id="157795f6-7e12-8056-95ca-f74678626e65" class="">It’s not just NVIDIA that faces these challenges. Competitors like AMD, Intel, and AWS are also heavily invested in building robust AI hardware and software ecosystems. Despite substantial R&amp;D investments—like AMD’s 9% increase in just one quarter—achieving seamless compatibility and high performance remains a persistent hurdle.</p><p id="157795f6-7e12-8011-a249-f955a0265d57" class="">This is where Sohu’s approach stands out. By focusing exclusively on transformer models, Sohu avoids the need for broad-spectrum development. Instead, the company channels its resources toward creating specialized, flexible software tailored for Large Language Model (LLM) inferencing. This strategic specialization not only reduces complexity but also enhances efficiency and adaptability in transformer-focused workflows.</p><p id="157795f6-7e12-8064-a94d-c88588b1ebde" class="">Most companies running open-source or proprietary models rely on transformer-specific inference libraries like TensorRT-LLM, vLLM, or HuggingFace’s TGI. While these libraries excel in tweaking hyperparameters, they lack flexibility for modifying underlying model code. However, given the structural similarity across transformer models—whether text, image, or video—hyperparameter adjustments are often sufficient for 95% of AI companies.</p><p id="157795f6-7e12-8053-8885-da4cc8fdccca" class="">For the remaining 5%, particularly the largest AI labs, customization is essential. These labs employ dedicated engineering teams to hand-tune GPU kernels, extracting every ounce of performance by reverse-engineering components like low-latency registers and tensor core optimization.</p><p id="157795f6-7e12-8073-b9db-de9c10702934" class="">Sohu disrupts this paradigm with Etched, its open-source software stack. Researchers no longer need to reverse-engineer GPU kernels. With Etched, they gain granular control over everything from drivers to kernels to the serving stack, enabling unprecedented levels of customization. This not only accelerates innovation but also positions Sohu as a pioneer in transformer-specific software solutions.</p><h1 id="157795f6-7e12-808d-8062-f36562b93504" class=""><strong>Conclusion: </strong></h1><p id="157795f6-7e12-80c7-a060-c9afe0639375" class="">In conclusion, after a comprehensive survey of all the existing technologies and the merits of Sohu over its competitors, I firmly believe that we are in a new era with Sohu stearing us towards the AI revolution. Etched AI’s bet on the transformer architecture might seem a bit risky, but in a world where transformers now dominate every major AI domain—from language to vision—Sohu isn’t just another chip; it’s the hardware revolution AI has been waiting for.</p><p id="157795f6-7e12-8088-be74-cdf1dc0f41cc" class="">The convergence of AI models around transformers has made Sohu the most critical hardware project of the decade. By partnering with TSMC on their cutting-edge 4nm process, securing top-tier hardware supply chains, and attracting the brightest minds from leading AI chip projects, Etched AI is on track to deliver one of the fastest chip launches in history. Early customer commitments and the unprecedented demand for Sohu validate its transformative potential.</p><p id="157795f6-7e12-80be-95fa-f4347bee77ce" class="">If you&#x27;re ready to experience this transformation firsthand, the time is now. Apply for early access to the Sohu HDK and be part of the revolution that will redefine AI as we know it.</p><p id="157795f6-7e12-80fa-9659-e178108cec4a" class="">
+</p><blockquote id="157795f6-7e12-80b7-b947-f23efbb42432" class=""><a href="https://www.etched.com/">https://www.etched.com/</a></blockquote><p id="157795f6-7e12-80cd-af40-df2c64e4881c" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
